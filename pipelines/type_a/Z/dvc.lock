@@ -1,64 +1,64 @@
 schema: '2.0'
 stages:
   collect_data:
-    cmd: python ml/src/collect_data.py --chunk Z --params pipelines/type_a/Z/params.yaml
+    cmd: python ml/src/collect_data.py --chunk z --params pipelines/type_a/z/params.yaml
     deps:
     - path: ml/src/collect_data.py
       hash: md5
       md5: 2c526bfb9957f5deb7effe0014ae8b38
       size: 1159
     params:
-      pipelines/type_a/Z/params.yaml:
+      pipelines/type_a/z/params.yaml:
         base:
           ml_dir: ml
-          data_dir: data/Z
+          data_dir: data/z
           model_dir: models
     outs:
-    - path: data/Z/raw/data.csv
+    - path: data/z/raw/data.csv
       hash: md5
-      md5: 1fdd1bd9ec21612470f5f0d55bb1d75f
-      size: 6007
+      md5: 15958aacc9fd0f21a365605e8aabca21
+      size: 8111
   process_data:
-    cmd: python ml/src/process_data.py --chunk Z --params pipelines/type_a/Z/params.yaml
+    cmd: python ml/src/process_data.py --chunk z --params pipelines/type_a/z/params.yaml
     deps:
-    - path: data/Z/raw/data.csv
+    - path: data/z/raw/data.csv
       hash: md5
-      md5: 1fdd1bd9ec21612470f5f0d55bb1d75f
-      size: 6007
+      md5: 15958aacc9fd0f21a365605e8aabca21
+      size: 8111
     - path: ml/src/process_data.py
       hash: md5
       md5: 555997f839b15e3c63b0a0d30259c576
       size: 819
     params:
-      pipelines/type_a/Z/params.yaml:
+      pipelines/type_a/z/params.yaml:
         base:
           ml_dir: ml
-          data_dir: data/Z
+          data_dir: data/z
           model_dir: models
     outs:
-    - path: data/Z/processed/data.csv
+    - path: data/z/processed/data.csv
       hash: md5
-      md5: bd03ea9b1b92b6b6c84daf3219bc774f
-      size: 1786
+      md5: db643ec03c548eeca9e31394e21aaf54
+      size: 1964
   train:
-    cmd: python ml/src/train.py --type type_a --chunk Z --params pipelines/type_a/Z/params.yaml
+    cmd: python ml/src/train.py --type type_a --chunk z --params pipelines/type_a/z/params.yaml
     deps:
-    - path: data/Z/processed/data.csv
+    - path: data/z/processed/data.csv
       hash: md5
-      md5: bd03ea9b1b92b6b6c84daf3219bc774f
-      size: 1786
+      md5: db643ec03c548eeca9e31394e21aaf54
+      size: 1964
     - path: ml/src/train.py
       hash: md5
       md5: 901f4842f49421a82e6ef0f579774b9b
       size: 973
     params:
-      pipelines/type_a/Z/params.yaml:
+      pipelines/type_a/z/params.yaml:
         base:
           ml_dir: ml
-          data_dir: data/Z
+          data_dir: data/z
           model_dir: models
     outs:
     - path: models/type_a_z.file
       hash: md5
-      md5: 5a2d176f01eb52f78b1712279d156d96
-      size: 1678
+      md5: fd9b5fe1add8826e8e77a9db39c54db6
+      size: 1844

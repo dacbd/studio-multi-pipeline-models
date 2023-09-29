@@ -5,20 +5,20 @@ artifacts:
 
 stages:
   collect_data:
-    cmd: python ${base.ml_dir}/src/collect_data.py --chunk Y --params pipelines/type_a/Y/params.yaml
+    cmd: python ${base.ml_dir}/src/collect_data.py --chunk Y --params pipelines/type_a/y/params.yaml
     wdir: ../../../
     params:
-      - pipelines/type_a/Y/params.yaml:
+      - pipelines/type_a/y/params.yaml:
         - base
     deps:
       - ${base.ml_dir}/src/collect_data.py
     outs:
       - ${base.data_dir}/raw/data.csv
   process_data:
-    cmd: python ${base.ml_dir}/src/process_data.py --chunk Y --params pipelines/type_a/Y/params.yaml
+    cmd: python ${base.ml_dir}/src/process_data.py --chunk y --params pipelines/type_a/y/params.yaml
     wdir: ../../../
     params:
-      - pipelines/type_a/Y/params.yaml:
+      - pipelines/type_a/y/params.yaml:
         - base
     deps:
       - ${base.ml_dir}/src/process_data.py
@@ -26,7 +26,7 @@ stages:
     outs:
       - ${base.data_dir}/processed/data.csv
   train:
-    cmd: python ${base.ml_dir}/src/train.py --type type_a --chunk Y --params pipelines/type_a/Y/params.yaml
+    cmd: python ${base.ml_dir}/src/train.py --type type_a --chunk y --params pipelines/type_a/Y/params.yaml
     wdir: ../../../
     params:
       - pipelines/type_a/Y/params.yaml:

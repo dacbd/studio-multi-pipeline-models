@@ -1,24 +1,24 @@
 artifacts:
-  type_a_X:
+  type_a_x:
     path: ${base.model_dir}/type_a_x.file
     type: model
 
 stages:
   collect_data:
-    cmd: python ${base.ml_dir}/src/collect_data.py --chunk X --params pipelines/type_a/X/params.yaml
+    cmd: python ${base.ml_dir}/src/collect_data.py --chunk x --params pipelines/type_a/x/params.yaml
     wdir: ../../../
     params:
-      - pipelines/type_a/X/params.yaml:
+      - pipelines/type_a/x/params.yaml:
         - base
     deps:
       - ${base.ml_dir}/src/collect_data.py
     outs:
       - ${base.data_dir}/raw/data.csv
   process_data:
-    cmd: python ${base.ml_dir}/src/process_data.py --chunk X --params pipelines/type_a/X/params.yaml
+    cmd: python ${base.ml_dir}/src/process_data.py --chunk x --params pipelines/type_a/x/params.yaml
     wdir: ../../../
     params:
-      - pipelines/type_a/X/params.yaml:
+      - pipelines/type_a/x/params.yaml:
         - base
     deps:
       - ${base.ml_dir}/src/process_data.py
@@ -26,10 +26,10 @@ stages:
     outs:
       - ${base.data_dir}/processed/data.csv
   train:
-    cmd: python ${base.ml_dir}/src/train.py --type type_a --chunk X --params pipelines/type_a/X/params.yaml
+    cmd: python ${base.ml_dir}/src/train.py --type type_a --chunk x --params pipelines/type_a/x/params.yaml
     wdir: ../../../
     params:
-      - pipelines/type_a/X/params.yaml:
+      - pipelines/type_a/x/params.yaml:
         - base
     deps:
       - ${base.ml_dir}/src/train.py

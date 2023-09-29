@@ -1,52 +1,52 @@
 schema: '2.0'
 stages:
   collect_data:
-    cmd: python ml/src/collect_data.py --chunk Y --params pipelines/type_a/Y/params.yaml
+    cmd: python ml/src/collect_data.py --chunk Y --params pipelines/type_a/y/params.yaml
     deps:
     - path: ml/src/collect_data.py
       hash: md5
       md5: 2c526bfb9957f5deb7effe0014ae8b38
       size: 1159
     params:
-      pipelines/type_a/Y/params.yaml:
+      pipelines/type_a/y/params.yaml:
         base:
           ml_dir: ml
-          data_dir: data/Y
+          data_dir: data/y
           model_dir: models
     outs:
-    - path: data/Y/raw/data.csv
+    - path: data/y/raw/data.csv
       hash: md5
-      md5: 9cc8236634ae5c0708c5c915e72da0a1
-      size: 5846
+      md5: 011542bf64a2296f90f92ecd46a0cbff
+      size: 5897
   process_data:
-    cmd: python ml/src/process_data.py --chunk Y --params pipelines/type_a/Y/params.yaml
+    cmd: python ml/src/process_data.py --chunk y --params pipelines/type_a/y/params.yaml
     deps:
-    - path: data/Y/raw/data.csv
+    - path: data/y/raw/data.csv
       hash: md5
-      md5: 9cc8236634ae5c0708c5c915e72da0a1
-      size: 5846
+      md5: 011542bf64a2296f90f92ecd46a0cbff
+      size: 5897
     - path: ml/src/process_data.py
       hash: md5
       md5: 555997f839b15e3c63b0a0d30259c576
       size: 819
     params:
-      pipelines/type_a/Y/params.yaml:
+      pipelines/type_a/y/params.yaml:
         base:
           ml_dir: ml
-          data_dir: data/Y
+          data_dir: data/y
           model_dir: models
     outs:
-    - path: data/Y/processed/data.csv
+    - path: data/y/processed/data.csv
       hash: md5
-      md5: ed0bf55478182d00bdc2ec3cccc29a93
-      size: 1788
+      md5: 9e130baa629885ddb929ece6cb95f913
+      size: 2023
   train:
-    cmd: python ml/src/train.py --type type_a --chunk Y --params pipelines/type_a/Y/params.yaml
+    cmd: python ml/src/train.py --type type_a --chunk y --params pipelines/type_a/Y/params.yaml
     deps:
-    - path: data/Y/processed/data.csv
+    - path: data/y/processed/data.csv
       hash: md5
-      md5: ed0bf55478182d00bdc2ec3cccc29a93
-      size: 1788
+      md5: 9e130baa629885ddb929ece6cb95f913
+      size: 2023
     - path: ml/src/train.py
       hash: md5
       md5: 901f4842f49421a82e6ef0f579774b9b
@@ -55,10 +55,10 @@ stages:
       pipelines/type_a/Y/params.yaml:
         base:
           ml_dir: ml
-          data_dir: data/Y
+          data_dir: data/y
           model_dir: models
     outs:
     - path: models/type_a_y.file
       hash: md5
-      md5: 11b9a06f5bd6d4ce517f1c6e4db63fae
-      size: 1680
+      md5: 83a0bdc0fee36858b4ca1681e7e31481
+      size: 1899

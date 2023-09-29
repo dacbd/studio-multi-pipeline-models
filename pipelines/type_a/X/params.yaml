@@ -1,4 +1,4 @@
 base:
   ml_dir: ml
-  data_dir: data/X
+  data_dir: data/x
   model_dir: models
